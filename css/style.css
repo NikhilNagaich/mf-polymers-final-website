@@ -1460,7 +1460,13 @@ body.modal-open .gallery-overlay {
     display: flex;
     gap: 2rem;
     margin-top: 2rem;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .mission-visual {
@@ -1744,8 +1750,21 @@ body.modal-open .gallery-overlay {
     }
     
     .mission-stats {
-        flex-direction: column;
+        flex-direction: row;
         gap: 1rem;
+        padding: 0 1rem;
+    }
+    
+    .mission-stat-item {
+        padding: 1rem 0.5rem;
+    }
+    
+    .mission-stat-item h3 {
+        font-size: 2rem;
+    }
+    
+    .mission-stat-item p {
+        font-size: 0.8rem;
     }
     
     .machine-leasing {
@@ -1817,7 +1836,6 @@ body.modal-open .gallery-overlay {
     transition: var(--transition-smooth);
     flex: 1;
     min-width: 0;
-    white-space: nowrap;
 }
 
 .mission-stat-item:hover {
