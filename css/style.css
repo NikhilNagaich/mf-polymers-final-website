@@ -991,7 +991,7 @@ nav ul {
     z-index: 1000;
     left: 50%;
     top: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%) scale(0.9);
     width: 90%;
     max-width: 800px;
     height: 80vh;
@@ -1004,6 +1004,45 @@ nav ul {
     border: 2px solid rgba(0, 255, 255, 0.3);
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8), 0 0 30px rgba(0, 255, 255, 0.2);
     overflow: hidden;
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Backdrop blur effect for the entire screen */
+.gallery-modal::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out, backdrop-filter 0.3s ease-in-out, -webkit-backdrop-filter 0.3s ease-in-out;
+}
+
+/* Show backdrop blur when modal is displayed */
+.gallery-modal[style*="display: block"]::before {
+    opacity: 1;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+/* Fallback for browsers that don't support backdrop-filter */
+@supports not (backdrop-filter: blur(8px)) {
+    .gallery-modal::before {
+        background: rgba(0, 0, 0, 0.7);
+    }
+}
+
+/* Enhanced modal animation */
+.gallery-modal[style*="display: block"] {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
 }
 
 .modal-content {
