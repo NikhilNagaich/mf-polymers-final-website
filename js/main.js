@@ -130,7 +130,6 @@ function initGalleryModals() {
     const galleryItems = document.querySelectorAll('.gallery-item');
     const modals = document.querySelectorAll('.gallery-modal');
     const closeButtons = document.querySelectorAll('.close-modal');
-    const backdrop = document.querySelector('.modal-backdrop');
 
     // Open modal on gallery item click
     galleryItems.forEach(item => {
@@ -147,8 +146,7 @@ function initGalleryModals() {
                     m.classList.remove('active');
                 });
                 
-                // Show backdrop and modal
-                if (backdrop) backdrop.classList.add('active');
+                // Show modal
                 modal.style.display = 'block';
                 modal.classList.add('active');
                 document.body.style.overflow = 'hidden';
@@ -175,7 +173,6 @@ function initGalleryModals() {
             if (modal) {
                 modal.style.display = 'none';
                 modal.classList.remove('active');
-                if (backdrop) backdrop.classList.remove('active');
                 document.body.style.overflow = 'auto';
                 document.body.classList.remove('modal-open');
             }
@@ -188,7 +185,6 @@ function initGalleryModals() {
             if (e.target === this) {
                 this.style.display = 'none';
                 this.classList.remove('active');
-                if (backdrop) backdrop.classList.remove('active');
                 document.body.style.overflow = 'auto';
                 document.body.classList.remove('modal-open');
             }
@@ -202,7 +198,6 @@ function initGalleryModals() {
             if (openModal) {
                 openModal.style.display = 'none';
                 openModal.classList.remove('active');
-                if (backdrop) backdrop.classList.remove('active');
                 document.body.style.overflow = 'auto';
                 document.body.classList.remove('modal-open');
             }
