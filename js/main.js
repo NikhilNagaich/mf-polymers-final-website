@@ -130,6 +130,7 @@ function initGalleryModals() {
     const galleryItems = document.querySelectorAll('.gallery-item');
     const modals = document.querySelectorAll('.gallery-modal');
     const closeButtons = document.querySelectorAll('.close-modal');
+    const backdrop = document.querySelector('.modal-backdrop');
 
     // Open modal on gallery item click
     galleryItems.forEach(item => {
@@ -141,9 +142,15 @@ function initGalleryModals() {
             const modal = document.getElementById(`modal-${imageId}`);
             if (modal) {
                 // Close any other open modals first
-                modals.forEach(m => m.style.display = 'none');
+                modals.forEach(m => {
+                    m.style.display = 'none';
+                    m.classList.remove('active');
+                });
                 
+                // Show backdrop and modal
+                if (backdrop) backdrop.classList.add('active');
                 modal.style.display = 'block';
+                modal.classList.add('active');
                 document.body.style.overflow = 'hidden';
                 
                 // Add class to body to prevent hover effects
@@ -167,6 +174,8 @@ function initGalleryModals() {
             const modal = this.closest('.gallery-modal');
             if (modal) {
                 modal.style.display = 'none';
+                modal.classList.remove('active');
+                if (backdrop) backdrop.classList.remove('active');
                 document.body.style.overflow = 'auto';
                 document.body.classList.remove('modal-open');
             }
@@ -178,6 +187,8 @@ function initGalleryModals() {
         modal.addEventListener('click', function(e) {
             if (e.target === this) {
                 this.style.display = 'none';
+                this.classList.remove('active');
+                if (backdrop) backdrop.classList.remove('active');
                 document.body.style.overflow = 'auto';
                 document.body.classList.remove('modal-open');
             }
@@ -187,9 +198,11 @@ function initGalleryModals() {
     // Close modal with Escape key
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape') {
-            const openModal = document.querySelector('.gallery-modal[style*="display: block"]');
+            const openModal = document.querySelector('.gallery-modal.active');
             if (openModal) {
                 openModal.style.display = 'none';
+                openModal.classList.remove('active');
+                if (backdrop) backdrop.classList.remove('active');
                 document.body.style.overflow = 'auto';
                 document.body.classList.remove('modal-open');
             }

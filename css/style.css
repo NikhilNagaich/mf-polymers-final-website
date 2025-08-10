@@ -985,6 +985,27 @@ nav ul {
 }
 
 /* ===== GALLERY MODAL ===== */
+/* Backdrop blur effect for the entire screen */
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 999;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.modal-backdrop.active {
+    opacity: 1;
+}
+
+/* Enhanced modal animation */
 .gallery-modal {
     display: none;
     position: fixed;
@@ -1008,39 +1029,7 @@ nav ul {
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Backdrop blur effect for the entire screen */
-.gallery-modal::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(0, 0, 0, 0.4);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    z-index: -1;
-    pointer-events: none;
-    opacity: 0;
-    transition: opacity 0.3s ease-in-out, backdrop-filter 0.3s ease-in-out, -webkit-backdrop-filter 0.3s ease-in-out;
-}
-
-/* Show backdrop blur when modal is displayed */
-.gallery-modal[style*="display: block"]::before {
-    opacity: 1;
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-}
-
-/* Fallback for browsers that don't support backdrop-filter */
-@supports not (backdrop-filter: blur(8px)) {
-    .gallery-modal::before {
-        background: rgba(0, 0, 0, 0.7);
-    }
-}
-
-/* Enhanced modal animation */
-.gallery-modal[style*="display: block"] {
+.gallery-modal.active {
     opacity: 1;
     transform: translate(-50%, -50%) scale(1);
 }
@@ -1177,11 +1166,20 @@ nav ul {
 }
 
 /* Prevent hover effects when modal is open */
-body:has(.gallery-modal[style*="display: block"]) .gallery-item:hover {
+body:has(.gallery-modal.active) .gallery-item:hover {
     transform: none;
 }
 
-body:has(.gallery-modal[style*="display: block"]) .gallery-item:hover .gallery-overlay {
+body:has(.gallery-modal.active) .gallery-item:hover .gallery-overlay {
+    opacity: 0;
+}
+
+/* Fallback for browsers that don't support :has() */
+body.modal-open .gallery-item:hover {
+    transform: none;
+}
+
+body.modal-open .gallery-item:hover .gallery-overlay {
     opacity: 0;
 }
 
