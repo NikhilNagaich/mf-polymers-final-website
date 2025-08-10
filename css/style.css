@@ -994,7 +994,8 @@ nav ul {
     transform: translate(-50%, -50%);
     width: 90%;
     max-width: 800px;
-    max-height: 90vh;
+    height: 80vh;
+    max-height: 600px;
     background-color: rgba(0, 0, 0, 0.95);
     backdrop-filter: blur(10px);
     cursor: default;
@@ -1016,7 +1017,7 @@ nav ul {
     flex-direction: column;
     cursor: default;
     pointer-events: auto;
-    max-height: 90vh;
+    overflow: hidden;
 }
 
 .close-modal {
@@ -1055,6 +1056,7 @@ nav ul {
     position: relative;
     pointer-events: none;
     border-bottom: 1px solid rgba(0, 255, 255, 0.2);
+    flex-shrink: 0;
 }
 
 .modal-image img {
@@ -1071,8 +1073,35 @@ nav ul {
     flex-direction: column;
     justify-content: flex-start;
     background: var(--primary-black);
-    pointer-events: none;
+    pointer-events: auto;
     overflow-y: auto;
+    min-height: 0;
+}
+
+/* Custom scrollbar for modal details */
+.modal-details::-webkit-scrollbar {
+    width: 8px;
+}
+
+.modal-details::-webkit-scrollbar-track {
+    background: rgba(0, 255, 255, 0.1);
+    border-radius: 4px;
+}
+
+.modal-details::-webkit-scrollbar-thumb {
+    background: rgba(0, 255, 255, 0.4);
+    border-radius: 4px;
+    border: 1px solid rgba(0, 255, 255, 0.2);
+}
+
+.modal-details::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 255, 255, 0.6);
+}
+
+/* Firefox scrollbar */
+.modal-details {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 255, 255, 0.4) rgba(0, 255, 255, 0.1);
 }
 
 .modal-details h3 {
@@ -1101,7 +1130,7 @@ nav ul {
 
 .modal-details ul li::before {
     content: '•';
-    position: relative;
+    position: absolute;
     left: 0;
     color: var(--accent-cyan);
     font-weight: bold;
@@ -1133,7 +1162,8 @@ body.modal-open .gallery-overlay {
 @media (max-width: 768px) {
     .gallery-modal {
         width: 95%;
-        max-height: 95vh;
+        height: 85vh;
+        max-height: 500px;
         border-radius: 10px;
     }
     
@@ -1143,6 +1173,7 @@ body.modal-open .gallery-overlay {
     
     .modal-details {
         padding: 1.5rem;
+        overflow-y: auto;
     }
     
     .close-modal {
@@ -1157,7 +1188,8 @@ body.modal-open .gallery-overlay {
 @media (max-width: 480px) {
     .gallery-modal {
         width: 98%;
-        max-height: 98vh;
+        height: 90vh;
+        max-height: 450px;
         border-radius: 8px;
     }
     
@@ -1167,6 +1199,7 @@ body.modal-open .gallery-overlay {
     
     .modal-details {
         padding: 1rem;
+        overflow-y: auto;
     }
     
     .modal-details h3 {
