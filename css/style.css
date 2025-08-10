@@ -1101,7 +1101,7 @@ nav ul {
 
 .modal-details ul li::before {
     content: '•';
-    position: absolute;
+    position: relative;
     left: 0;
     color: var(--accent-cyan);
     font-weight: bold;
