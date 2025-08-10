@@ -1698,8 +1698,8 @@ body.modal-open .gallery-overlay {
     line-height: 1.6;
 }
 
-/* ===== MACHINE LEASING SECTION ===== */
-.machine-leasing {
+/* ===== CUSTOM MICROFABRICATION SOLUTIONS SECTION ===== */
+.custom-solutions {
     margin-top: 4rem;
     padding: 3rem;
     background: rgba(13, 13, 13, 0.3);
@@ -1707,14 +1707,14 @@ body.modal-open .gallery-overlay {
     border: 1px solid rgba(0, 255, 255, 0.1);
 }
 
-.machine-leasing h3 {
+.custom-solutions h3 {
     color: var(--primary-white);
     margin-bottom: 1rem;
     font-size: 1.8rem;
     text-align: center;
 }
 
-.machine-leasing p {
+.custom-solutions p {
     color: var(--text-gray);
     text-align: center;
     margin-bottom: 2rem;
@@ -1723,7 +1723,7 @@ body.modal-open .gallery-overlay {
     margin-right: auto;
 }
 
-.leasing-benefits {
+.solution-benefits {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
@@ -1915,7 +1915,7 @@ body.modal-open .gallery-overlay {
         font-size: 0.8rem;
     }
     
-    .machine-leasing {
+    .custom-solutions {
         padding: 2rem 1rem;
     }
     
